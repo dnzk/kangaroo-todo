@@ -1,6 +1,6 @@
 
 import '@testing-library/jest-dom'
-import { render, screen } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import AppLogo from '../../../src/app/ui/logo/AppLogo'
 
 describe('AppLogo', () => {
