@@ -4,18 +4,19 @@ exports[`PlusButton renders correctly 1`] = `
 <div>
   <button
     class="icon"
+    icon="plus"
   >
     <img
       alt="Plus button"
       aria-label="Plus button"
       data-nimg="1"
       decoding="async"
-      height="30"
+      height="60"
       loading="lazy"
-      src="/_next/image?url=%2Fimg.jpg&w=64&q=75"
-      srcset="/_next/image?url=%2Fimg.jpg&w=32&q=75 1x, /_next/image?url=%2Fimg.jpg&w=64&q=75 2x"
+      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
       style="color: transparent;"
-      width="30"
+      width="60"
     />
   </button>
 </div>
