@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import font from '@/app/lib/font'
+import AppBackground from "./ui/background/AppBackground"
 import "./reset.css"
 import "./global.css"
 
@@ -15,7 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={font.className}>{children}</body>
+      <body className={font.className}>
+        <AppBackground />
+        {children}
+      </body>
     </html>
   )
 }
