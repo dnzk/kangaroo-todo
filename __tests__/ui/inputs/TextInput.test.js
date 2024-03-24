@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
-import TextInput from '../../../src/components/inputs/TextInput'
+import TextInput from '../../../src/app/ui/inputs/TextInput'
 
 describe('TextInput', () => {
   it('renders text type by default', () => {

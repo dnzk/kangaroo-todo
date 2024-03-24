@@ -1,9 +1,7 @@
 import type { Metadata } from "next"
-import { Jaldi } from "next/font/google"
+import font from '@/app/lib/font'
 import "./reset.css"
 import "./global.css"
-
-const font = Jaldi({ subsets: ['latin'], weight: '400' })
 
 export const metadata: Metadata = {
   title: "Create Next App",
