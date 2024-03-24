@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Jaldi } from "next/font/google"
 import "./reset.css"
+import "./global.css"
 
 const font = Jaldi({ subsets: ['latin'], weight: '400' })
 
