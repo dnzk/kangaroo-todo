@@ -1,7 +1,22 @@
-import Hi from "@/components/Hi";
+"use client"
+
+import style from "./page.module.scss"
+import AppHeader from "./ui/appHeader/AppHeader";
+import TodoItems from "./ui/todoItems/TodoItems";
 
 export default function Home() {
+
   return (
-    <Hi />
+    <div>
+      <AppHeader />
+      <div className={style.container}>
+        <div className={style.content}>
+          <TodoItems
+            items={[]}
+            onAddItem={() => { }}
+          />
+        </div>
+      </div>
+    </div>
   );
 }

@@ -1,6 +1,7 @@
 .app-header {
   background-color: var(--light-2);
   width: 100%;
+  min-width: var(--min-width);
   display: flex;
   justify-content: space-between;
   padding: 16px;

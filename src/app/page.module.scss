@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  min-width: var(--min-width);
+  padding: 32px;
+
+  @media screen and (min-width: 1024px) {
+    width: 600px;
+  }
+
+  @media screen and (min-width: 1720px) {
+    width: 800px;
+  }
+}
