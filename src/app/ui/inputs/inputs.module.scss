@@ -1,12 +1,14 @@
 .base {
-  width: 100%;
   padding: 8px 16px;
   border-radius: 10px;
   border: 1px solid var(--dark-2);
   font-size: 1rem;
   line-height: 1.5;
+  width: 100%;
+  max-width: 100%;
+
   &:focus {
-    border-color: var(--primary-1);
+    border-color: var(--primary-10);
     outline: none !important;
   }
   &:disabled {
