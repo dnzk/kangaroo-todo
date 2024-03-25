@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginPage renders correctly 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <div
+      class="login"
+    >
+      <img
+        alt="Kangaroo Todo"
+        data-nimg="1"
+        decoding="async"
+        height="181"
+        loading="lazy"
+        src="/_next/image?url=%2Fimg.jpg&w=384&q=75"
+        srcset="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=384&q=75 2x"
+        style="color: transparent;"
+        width="181"
+      />
+      <form>
+        <input
+          class="className base "
+          placeholder="Username"
+          style="margin-bottom: 25px;"
+          type="text"
+        />
+        <input
+          class="className base "
+          placeholder="Password"
+          style="margin-bottom: 50px;"
+          type="text"
+        />
+        <button
+          class="className primary"
+          disabled=""
+        >
+          Log In
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+`;
