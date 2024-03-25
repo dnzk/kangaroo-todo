@@ -3,6 +3,7 @@ import font from '@/app/lib/font'
 import AppBackground from "./ui/background/AppBackground"
 import "./reset.css"
 import "./global.css"
+import StoreProvider from "./StoreProvider"
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,8 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        <AppBackground />
-        {children}
+        <StoreProvider>
+          <AppBackground />
+          {children}
+        </StoreProvider>
       </body>
     </html>
   )
