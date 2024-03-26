@@ -5,15 +5,24 @@ import AppLogo from "../ui/logo/AppLogo"
 import TextInput from "../ui/inputs/TextInput"
 import Button from "../ui/buttons/Button"
 import { ChangeEvent, FormEvent, useState } from "react"
+import { post } from "../lib/api/api"
+import { useCookies } from 'next-client-cookies'
+import { useRouter } from "next/navigation"
 
 export default function LoginPage() {
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const cookies = useCookies()
+  const router = useRouter()
 
-  function logIn(e: FormEvent<HTMLFormElement>) {
+  async function logIn(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    // TODO:
-    // implement log in
+    const response = await post('login', {
+      username,
+      password
+    })
+    cookies.set('token', response.token)
+    router.push('/')
   }
 
   return (
@@ -28,6 +37,7 @@ export default function LoginPage() {
           />
           <TextInput
             placeholder="Password"
+            type="password"
             style={{ marginBottom: '50px' }}
             onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
           />

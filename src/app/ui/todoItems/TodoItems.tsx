@@ -9,6 +9,7 @@ import { post } from "@/app/lib/api/api"
 import { setItems } from "@/app/lib/store/features/todo/todoSlice"
 import { useDispatch } from "react-redux"
 import { put, del } from "@/app/lib/api/api"
+import { useCookies } from 'next-client-cookies'
 
 export interface ITodoItem {
   id: string;
@@ -26,6 +27,8 @@ export default function TodoItems(props: ITodoItems) {
   const [shouldShowModal, setShouldShowModal] = useState<boolean>(false)
   const [itemTracker, setItemTracker] = useState<ITodoItem | undefined>()
   const dispatch = useDispatch()
+  const cookies = useCookies()
+  const token = cookies.get('token')
 
   async function saveItem(item: IItemEdit) {
     console.log(item)
@@ -38,7 +41,7 @@ export default function TodoItems(props: ITodoItems) {
         name: item.name,
         details: item.details,
         done: false
-      })
+      }, token)
       if (response.ok) {
         const r = await response.json()
         dispatch(setItems(r.data))
@@ -52,7 +55,7 @@ export default function TodoItems(props: ITodoItems) {
       name: item.name,
       details: item.details,
       done: item.done
-    })
+    }, token)
   }
 
   function markAsDone(item: IItemEdit) {
@@ -66,7 +69,7 @@ export default function TodoItems(props: ITodoItems) {
   }
 
   function deleteItem(item: IItemEdit) {
-    del(`todo/${item.id}`)
+    del(`todo/${item.id}`, token)
   }
 
   function showModal() {
