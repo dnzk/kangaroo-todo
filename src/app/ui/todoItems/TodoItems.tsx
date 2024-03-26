@@ -20,7 +20,7 @@ interface ITodoItems {
 export default function TodoItems(props: ITodoItems) {
   const [shouldShowModal, setShouldShowModal] = useState<boolean>(false)
   const [nameTracker, setNameTracker] = useState<string>('')
-  const [detailTracker, setDetailTracker] = useState<string>('')
+  const [detailTracker, setDetailTracker] = useState<string | undefined>('')
 
   function saveItem(name: string, detail?: string) {
     // TODO:
@@ -50,6 +50,12 @@ export default function TodoItems(props: ITodoItems) {
     )
   }
 
+  function editItem(item: ITodoItem) {
+    setNameTracker(item.name)
+    setDetailTracker(item.detail)
+    showModal()
+  }
+
   return (
     <>
       <div>
@@ -63,7 +69,9 @@ export default function TodoItems(props: ITodoItems) {
                 onDone={() => { }}
                 onUndone={() => { }}
                 onDelete={() => { }}
-                onEdit={() => { }}
+                onEdit={() => {
+                  editItem(item)
+                }}
               />
             </li>)
           }
