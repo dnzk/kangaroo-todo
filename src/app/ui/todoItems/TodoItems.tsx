@@ -32,8 +32,6 @@ export default function TodoItems(props: ITodoItems) {
 
   async function saveItem(item: IItemEdit) {
     if (item.id) {
-      // TODO:
-      // update
       updateItem(item)
     } else {
       const response = await post('todo', {

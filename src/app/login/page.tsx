@@ -5,7 +5,6 @@ import AppLogo from "../ui/logo/AppLogo"
 import TextInput from "../ui/inputs/TextInput"
 import Button from "../ui/buttons/Button"
 import { ChangeEvent, FormEvent, useState } from "react"
-import { post } from "../lib/api/api"
 import { useCookies } from 'next-client-cookies'
 import { useRouter } from "next/navigation"
 
@@ -14,6 +13,11 @@ export default function LoginPage() {
   const [password, setPassword] = useState<string>('')
   const cookies = useCookies()
   const router = useRouter()
+  const token = cookies.get('token')
+
+  if (token) {
+    router.replace('/')
+  }
 
   async function logIn(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()

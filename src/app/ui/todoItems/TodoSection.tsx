@@ -14,7 +14,7 @@ export default function TodoSection() {
     return <p>There was an error when loading your data. Please reload.</p>
   }
 
-  if (data?.data.length) {
+  if (data?.data?.length) {
     dispatch(setItems(data.data))
   }
 
