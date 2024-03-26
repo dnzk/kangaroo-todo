@@ -75,7 +75,7 @@ export default function ItemForm({ item, onSave, onCancel }: IItemForm) {
                 ...item,
                 ...{
                   name: localName,
-                  detail: localDetail
+                  details: localDetail
                 }
               })
             } else {

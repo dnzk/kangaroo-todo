@@ -4,7 +4,7 @@ import IconButton from "../buttons/IconButton"
 interface IItemDetail {
   onEdit: () => void;
   onDelete: () => void;
-  detail?: string;
+  details?: string;
 }
 
 export default function ItemDetail(props: IItemDetail) {
@@ -14,8 +14,8 @@ export default function ItemDetail(props: IItemDetail) {
         <IconButton size="small" icon="close" onClick={props.onDelete} />
         <IconButton size="small" icon="pencil" onClick={props.onEdit} />
       </div>
-      {props.detail &&
-        <p>{props.detail}</p>
+      {props.details &&
+        <p>{props.details}</p>
       }
     </div>
   )

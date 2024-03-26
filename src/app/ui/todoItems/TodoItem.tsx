@@ -9,7 +9,7 @@ import ItemDetail from "./ItemDetail"
 interface ITodoItem {
   done: boolean;
   name: string;
-  detail?: string;
+  details?: string;
   onDone: () => void;
   onUndone: () => void;
   onDelete: () => void;
@@ -51,7 +51,7 @@ export default function TodoItem(props: ITodoItem) {
         <ItemDetail
           onDelete={props.onDelete}
           onEdit={props.onEdit}
-          detail={props.detail}
+          details={props.details}
         />
       }
     </>

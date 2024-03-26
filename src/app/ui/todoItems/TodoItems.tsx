@@ -28,9 +28,11 @@ export default function TodoItems(props: ITodoItems) {
   const dispatch = useDispatch()
 
   async function saveItem(item: IItemEdit) {
+    console.log(item)
     if (item.id) {
       // TODO:
       // update
+      updateItem(item)
     } else {
       const response = await post('todo', {
         name: item.name,
@@ -41,8 +43,8 @@ export default function TodoItems(props: ITodoItems) {
         const r = await response.json()
         dispatch(setItems(r.data))
       }
-      hideModal()
     }
+    hideModal()
   }
 
   async function updateItem(item: IItemEdit) {
@@ -114,11 +116,14 @@ export default function TodoItems(props: ITodoItems) {
       <div>
         <ol className={style['todo-items-list']}>
           {
-            props.items.map(item => <li className={style['todo-items-list__item']} key={item.id}>
+            props.items.map(item => <li
+              className={style['todo-items-list__item']}
+              key={item.id}
+            >
               <TodoItem
                 done={item.done}
                 name={item.name}
-                detail={item.details}
+                details={item.details}
                 onDone={() => {
                   markAsDone(item)
                 }}
