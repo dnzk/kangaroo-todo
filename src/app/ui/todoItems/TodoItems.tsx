@@ -31,7 +31,6 @@ export default function TodoItems(props: ITodoItems) {
   const token = cookies.get('token')
 
   async function saveItem(item: IItemEdit) {
-    console.log(item)
     if (item.id) {
       // TODO:
       // update
@@ -42,20 +41,18 @@ export default function TodoItems(props: ITodoItems) {
         details: item.details,
         done: false
       }, token)
-      if (response.ok) {
-        const r = await response.json()
-        dispatch(setItems(r.data))
-      }
+      dispatch(setItems(response.data))
     }
     hideModal()
   }
 
   async function updateItem(item: IItemEdit) {
-    await put(`todo/${item.id}`, {
+    const response = await put(`todo/${item.id}`, {
       name: item.name,
       details: item.details,
       done: item.done
     }, token)
+    dispatch(setItems(response.data))
   }
 
   function markAsDone(item: IItemEdit) {
@@ -117,6 +114,7 @@ export default function TodoItems(props: ITodoItems) {
   return (
     <>
       <div>
+        <p className={style['todo-items__header']}>Looks like we&apos;ve got things to do!</p>
         <ol className={style['todo-items-list']}>
           {
             props.items.map(item => <li

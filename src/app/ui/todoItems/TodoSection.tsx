@@ -11,7 +11,7 @@ export default function TodoSection() {
   const items = useAppSelector(selectItems)
 
   if (error) {
-    return <h1>ERROR</h1>
+    return <p>There was an error when loading your data. Please reload.</p>
   }
 
   if (data?.data.length) {

@@ -17,11 +17,15 @@ export default function LoginPage() {
 
   async function logIn(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    const response = await post('login', {
-      username,
-      password
+    const b = btoa(`${username}:${password}`)
+    const response = await fetch('http://localhost:3000/api/login', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Basic ${b}`
+      }
     })
-    cookies.set('token', response.token)
+    const result = await response.json()
+    cookies.set('token', result.data)
     router.push('/')
   }
 
