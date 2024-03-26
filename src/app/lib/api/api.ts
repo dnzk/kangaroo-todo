@@ -29,3 +29,15 @@ export async function del(resource: string) {
   })
   return response.json()
 }
+
+export async function post(resource: string, data: any) {
+  const url = process.env.NEXT_PUBLIC_API_URL
+  const response = await fetch(`${url}/${resource}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  return response.json()
+}
