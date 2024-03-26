@@ -18,3 +18,14 @@ export async function put(resource: string, data: any) {
   })
   return response.json()
 }
+
+export async function del(resource: string) {
+  const url = process.env.NEXT_PUBLIC_API_URL
+  const response = await fetch(`${url}/${resource}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  return response.json()
+}

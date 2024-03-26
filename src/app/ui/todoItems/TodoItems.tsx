@@ -8,7 +8,7 @@ import { IItemEdit } from "./ItemForm"
 import post from "@/app/lib/api/post"
 import { setItems } from "@/app/lib/store/features/todo/todoSlice"
 import { useDispatch } from "react-redux"
-import { put } from "@/app/lib/api/api"
+import { put, del } from "@/app/lib/api/api"
 
 export interface ITodoItem {
   id: string;
@@ -61,6 +61,10 @@ export default function TodoItems(props: ITodoItems) {
   function markAsUndone(item: IItemEdit) {
     const updated = { ...item, ...{ done: false } }
     updateItem(updated)
+  }
+
+  function deleteItem(item: IItemEdit) {
+    del(`todo/${item.id}`)
   }
 
   function showModal() {
@@ -121,7 +125,9 @@ export default function TodoItems(props: ITodoItems) {
                 onUndone={() => {
                   markAsUndone(item)
                 }}
-                onDelete={() => { }}
+                onDelete={() => {
+                  deleteItem(item)
+                }}
                 onEdit={() => {
                   editItem(item)
                 }}
