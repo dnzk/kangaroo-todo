@@ -16,3 +16,12 @@
     padding: 32px 64px;
   }
 }
+
+.profile-dropdown {
+  padding: 10px;
+  width: 100px;
+  border-radius: 8px;
+  background-color: var(--dark-3);
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
+  margin-top: 7px;
+}

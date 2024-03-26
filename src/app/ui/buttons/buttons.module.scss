@@ -81,3 +81,14 @@
   font-size: 0.7rem;
   @extend .utility-behavior;
 }
+
+.text-button {
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--primary-12);
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
