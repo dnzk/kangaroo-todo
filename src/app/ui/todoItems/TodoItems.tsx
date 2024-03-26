@@ -13,7 +13,7 @@ export interface ITodoItem {
   id: string;
   done: boolean;
   name: string;
-  detail?: string;
+  details?: string;
 }
 
 interface ITodoItems {
@@ -95,7 +95,7 @@ export default function TodoItems(props: ITodoItems) {
               <TodoItem
                 done={item.done}
                 name={item.name}
-                detail={item.detail}
+                detail={item.details}
                 onDone={() => { }}
                 onUndone={() => { }}
                 onDelete={() => { }}

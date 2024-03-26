@@ -2,14 +2,11 @@
 
 import style from "./page.module.scss"
 import AppHeader from "./ui/appHeader/AppHeader"
-import TodoItems from "./ui/todoItems/TodoItems"
 import { SWRConfig } from "swr"
 import fetcher from "./lib/api/fetch"
-import { selectItems } from "./lib/store/features/todo/todoSlice"
-import { useAppSelector } from "./lib/store/hooks"
+import TodoSection from "./ui/todoItems/TodoSection"
 
 export default function Home() {
-  const items = useAppSelector(selectItems)
 
   return (
     <SWRConfig
@@ -21,10 +18,7 @@ export default function Home() {
         <AppHeader />
         <div className={style.container}>
           <div className={style.content}>
-            <TodoItems
-              items={items}
-              onAddItem={() => { }}
-            />
+            <TodoSection />
           </div>
         </div>
       </div>
