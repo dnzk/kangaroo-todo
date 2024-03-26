@@ -8,6 +8,7 @@ import { IItemEdit } from "./ItemForm"
 import post from "@/app/lib/api/post"
 import { setItems } from "@/app/lib/store/features/todo/todoSlice"
 import { useDispatch } from "react-redux"
+import { put } from "@/app/lib/api/api"
 
 export interface ITodoItem {
   id: string;
@@ -33,7 +34,7 @@ export default function TodoItems(props: ITodoItems) {
     } else {
       const response = await post('todo', {
         name: item.name,
-        details: item.detail,
+        details: item.details,
         done: false
       })
       if (response.ok) {
@@ -42,6 +43,24 @@ export default function TodoItems(props: ITodoItems) {
       }
       hideModal()
     }
+  }
+
+  async function updateItem(item: IItemEdit) {
+    await put(`todo/${item.id}`, {
+      name: item.name,
+      details: item.details,
+      done: item.done
+    })
+  }
+
+  function markAsDone(item: IItemEdit) {
+    const updated = { ...item, ...{ done: true } }
+    updateItem(updated)
+  }
+
+  function markAsUndone(item: IItemEdit) {
+    const updated = { ...item, ...{ done: false } }
+    updateItem(updated)
   }
 
   function showModal() {
@@ -96,8 +115,12 @@ export default function TodoItems(props: ITodoItems) {
                 done={item.done}
                 name={item.name}
                 detail={item.details}
-                onDone={() => { }}
-                onUndone={() => { }}
+                onDone={() => {
+                  markAsDone(item)
+                }}
+                onUndone={() => {
+                  markAsUndone(item)
+                }}
                 onDelete={() => { }}
                 onEdit={() => {
                   editItem(item)

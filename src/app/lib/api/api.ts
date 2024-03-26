@@ -6,3 +6,15 @@ export async function get(resource: string) {
   }
   return null
 }
+
+export async function put(resource: string, data: any) {
+  const url = process.env.NEXT_PUBLIC_API_URL
+  const response = await fetch(`${url}/${resource}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data)
+  })
+  return response.json()
+}

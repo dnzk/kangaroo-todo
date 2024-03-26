@@ -6,7 +6,7 @@ import { ChangeEvent, useEffect, useState } from "react"
 
 export interface IItemEdit {
   name: string;
-  detail?: string;
+  details?: string;
   id?: string;
   done: boolean;
 }
@@ -26,8 +26,8 @@ export default function ItemForm({ item, onSave, onCancel }: IItemForm) {
       if (item.name) {
         setLocalName(item.name)
       }
-      if (item.detail) {
-        setLocalDetail(item.detail)
+      if (item.details) {
+        setLocalDetail(item.details)
       }
     }
   }, [item])
@@ -81,7 +81,7 @@ export default function ItemForm({ item, onSave, onCancel }: IItemForm) {
             } else {
               onSave({
                 name: localName,
-                detail: localDetail,
+                details: localDetail,
                 id: undefined,
                 done: false
               })
