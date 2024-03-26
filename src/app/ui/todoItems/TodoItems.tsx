@@ -4,8 +4,9 @@ import TodoItem from "./TodoItem"
 import ModalBackdrop from "../modal/ModalBackdrop"
 import ItemForm from "./ItemForm"
 import { useState } from "react"
+import { IItemEdit } from "./ItemForm"
 
-interface ITodoItem {
+export interface ITodoItem {
   id: string;
   done: boolean;
   name: string;
@@ -19,12 +20,13 @@ interface ITodoItems {
 
 export default function TodoItems(props: ITodoItems) {
   const [shouldShowModal, setShouldShowModal] = useState<boolean>(false)
-  const [nameTracker, setNameTracker] = useState<string>('')
-  const [detailTracker, setDetailTracker] = useState<string | undefined>('')
+  const [itemTracker, setItemTracker] = useState<ITodoItem | undefined>()
 
-  function saveItem(name: string, detail?: string) {
+  function saveItem(item: IItemEdit) {
     // TODO:
     // save item
+    // if item.id is not null then update
+    // else create new
   }
 
   function showModal() {
@@ -35,6 +37,16 @@ export default function TodoItems(props: ITodoItems) {
     setShouldShowModal(false)
   }
 
+  function createItem() {
+    setItemTracker(undefined)
+    showModal()
+  }
+
+  function editItem(item: ITodoItem) {
+    setItemTracker(item)
+    showModal()
+  }
+
   if (!props.items.length) {
     return (
       <div className={style['todo-items']}>
@@ -43,17 +55,11 @@ export default function TodoItems(props: ITodoItems) {
           <IconButton
             size="large"
             icon="plus"
-            onClick={showModal}
+            onClick={createItem}
           />
         </div>
       </div>
     )
-  }
-
-  function editItem(item: ITodoItem) {
-    setNameTracker(item.name)
-    setDetailTracker(item.detail)
-    showModal()
   }
 
   return (
@@ -77,14 +83,13 @@ export default function TodoItems(props: ITodoItems) {
           }
         </ol>
         <div className={style['todo-items__button']}>
-          <IconButton size="medium" icon="plus" onClick={showModal} />
+          <IconButton size="medium" icon="plus" onClick={createItem} />
         </div>
       </div>
       {shouldShowModal &&
         <ModalBackdrop>
           <ItemForm
-            name={nameTracker}
-            detail={detailTracker}
+            item={itemTracker}
             onCancel={hideModal}
             onSave={saveItem}
           />

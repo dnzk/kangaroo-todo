@@ -4,25 +4,33 @@ import TextArea from "../inputs/TextArea"
 import TextInput from "../inputs/TextInput"
 import { ChangeEvent, useEffect, useState } from "react"
 
-interface IItemForm {
-  name?: string;
+export interface IItemEdit {
+  name: string;
   detail?: string;
-  onCancel: () => void;
-  onSave: (name: string, detail?: string) => void;
+  id?: string;
+  done: boolean;
 }
 
-export default function ItemForm({ name, detail, onCancel, onSave }: IItemForm) {
+interface IItemForm {
+  item?: IItemEdit;
+  onCancel: () => void;
+  onSave: (item: IItemEdit) => void;
+}
+
+export default function ItemForm({ item, onSave, onCancel }: IItemForm) {
   const [localName, setLocalName] = useState<string>('')
   const [localDetail, setLocalDetail] = useState<string>('')
 
   useEffect(() => {
-    if (name) {
-      setLocalName(name)
+    if (item) {
+      if (item.name) {
+        setLocalName(item.name)
+      }
+      if (item.detail) {
+        setLocalDetail(item.detail)
+      }
     }
-    if (detail) {
-      setLocalDetail(detail)
-    }
-  }, [name, detail])
+  }, [item])
 
   function onNameChange(event: ChangeEvent<HTMLInputElement>) {
     setLocalName(event.target.value)
@@ -61,7 +69,24 @@ export default function ItemForm({ name, detail, onCancel, onSave }: IItemForm) 
         </Button>
         <Button
           variant="primary"
-          onClick={() => onSave(localName, localDetail)}
+          onClick={() => {
+            if (item) {
+              onSave({
+                ...item,
+                ...{
+                  name: localName,
+                  detail: localDetail
+                }
+              })
+            } else {
+              onSave({
+                name: localName,
+                detail: localDetail,
+                id: undefined,
+                done: false
+              })
+            }
+          }}
         >
           Save
         </Button>
