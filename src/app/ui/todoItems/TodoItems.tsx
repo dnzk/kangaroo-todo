@@ -5,6 +5,9 @@ import ModalBackdrop from "../modal/ModalBackdrop"
 import ItemForm from "./ItemForm"
 import { useState } from "react"
 import { IItemEdit } from "./ItemForm"
+import post from "@/app/lib/api/post"
+import { setItems } from "@/app/lib/store/features/todo/todoSlice"
+import { useDispatch } from "react-redux"
 
 export interface ITodoItem {
   id: string;
@@ -21,12 +24,24 @@ interface ITodoItems {
 export default function TodoItems(props: ITodoItems) {
   const [shouldShowModal, setShouldShowModal] = useState<boolean>(false)
   const [itemTracker, setItemTracker] = useState<ITodoItem | undefined>()
+  const dispatch = useDispatch()
 
-  function saveItem(item: IItemEdit) {
-    // TODO:
-    // save item
-    // if item.id is not null then update
-    // else create new
+  async function saveItem(item: IItemEdit) {
+    if (item.id) {
+      // TODO:
+      // update
+    } else {
+      const response = await post('todo', {
+        name: item.name,
+        details: item.detail,
+        done: false
+      })
+      if (response.ok) {
+        const r = await response.json()
+        dispatch(setItems(r.data))
+      }
+      hideModal()
+    }
   }
 
   function showModal() {
@@ -58,6 +73,15 @@ export default function TodoItems(props: ITodoItems) {
             onClick={createItem}
           />
         </div>
+        {shouldShowModal &&
+          <ModalBackdrop>
+            <ItemForm
+              item={itemTracker}
+              onCancel={hideModal}
+              onSave={saveItem}
+            />
+          </ModalBackdrop>
+        }
       </div>
     )
   }

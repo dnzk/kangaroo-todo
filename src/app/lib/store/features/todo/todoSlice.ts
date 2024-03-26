@@ -15,13 +15,7 @@ interface TodoState {
 }
 
 const initialState: TodoState = {
-  items: [
-    {
-      id: 'asdf-asdf',
-      name: 'do math',
-      done: false
-    }
-  ],
+  items: [],
   focus: undefined
 }
 
