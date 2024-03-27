@@ -5,7 +5,6 @@ import "./reset.css"
 import "./global.css"
 import StoreProvider from "./StoreProvider"
 import { CookiesProvider } from "next-client-cookies/server"
-CookiesProvider
 
 export const metadata: Metadata = {
   title: "KangarooTodo",
