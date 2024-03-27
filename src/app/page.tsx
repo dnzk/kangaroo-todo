@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux"
 import { setItems } from "./lib/store/features/todo/todoSlice"
 import TodoItems from "./ui/todoItems/TodoItems"
 import { useState } from "react"
+import Loader from "./ui/loader/Loader"
 
 export default function Home() {
   const cookies = useCookies()
@@ -34,7 +35,7 @@ export default function Home() {
       <AppHeader />
       <div className={style.container}>
         <div className={style.content}>
-          {loading ? <p>loading</p> : <TodoItems />}
+          {loading ? <Loader /> : <TodoItems />}
         </div>
       </div>
     </div>
