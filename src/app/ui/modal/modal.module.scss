@@ -5,15 +5,15 @@
   top: 0;
   left: 0;
   z-index: 1;
-  background: linear-gradient(var(--primary-11), var(--dark-1));
+  background: linear-gradient(var(--primary-11), var(--dark-10));
   opacity: 0.4;
 }
 
 .modal {
   width: 290px;
   padding: 20px 10px;
-  background-color: var(--light-4);
-  box-shadow: 1px 4px 4px var(--dark-1);
+  background-color: var(--light-40);
+  box-shadow: 1px 4px 4px var(--dark-10);
   border-radius: 8px;
   position: fixed;
   top: 15%;

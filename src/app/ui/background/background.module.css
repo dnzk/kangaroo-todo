@@ -1,5 +1,5 @@
 .background {
-  background-color: var(--light-2);
+  background-color: var(--light-20);
   position: fixed;
   top: 0;
   left: 0;
@@ -9,7 +9,7 @@
 }
 
 .gradient {
-  background: linear-gradient(var(--light-2), var(--light-1));
+  background: linear-gradient(var(--light-20), var(--light-10));
   position: absolute;
   bottom: 0;
   left: 0;

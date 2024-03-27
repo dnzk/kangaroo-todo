@@ -1,5 +1,5 @@
 .todo-items {
-  color: var(--dark-1);
+  color: var(--dark-10);
 
   &__button {
     margin-top: 15px;
@@ -8,7 +8,7 @@
 
   &__header {
     font-size: 0.9rem;
-    color: var(--dark-1);
+    color: var(--dark-10);
     margin-bottom: 25px;
   }
 }
@@ -23,7 +23,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  color: var(--dark-1);
+  color: var(--dark-10);
 
   &__separator {
     display: inline-block;
@@ -38,10 +38,10 @@
 .item-detail {
   padding: 8px;
   margin: 5px 0 0 30px;
-  background-color: var(--light-3);
-  border: 1px dashed var(--light-1);
+  background-color: var(--light-30);
+  border: 1px dashed var(--light-10);
   border-radius: 4px;
-  color: var(--dark-2);
+  color: var(--dark-20);
 
   &__buttons {
     display: flex;
