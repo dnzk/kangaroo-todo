@@ -20,7 +20,6 @@ export interface ITodoItem {
 
 interface ITodoItems {
   items: ITodoItem[];
-  onAddItem: () => void;
 }
 
 export default function TodoItems(props: ITodoItems) {
@@ -63,8 +62,9 @@ export default function TodoItems(props: ITodoItems) {
     updateItem(updated)
   }
 
-  function deleteItem(item: IItemEdit) {
-    del(`todo/${item.id}`, token)
+  async function deleteItem(item: IItemEdit) {
+    const response = await del(`todo/${item.id}`, token)
+    dispatch(setItems(response.data))
   }
 
   function showModal() {

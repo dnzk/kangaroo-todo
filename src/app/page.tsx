@@ -2,44 +2,39 @@
 
 import style from "./page.module.scss"
 import AppHeader from "./ui/appHeader/AppHeader"
-import { SWRConfig } from "swr"
 import TodoSection from "./ui/todoItems/TodoSection"
 import { useCookies } from "next-client-cookies"
 import { useRouter } from "next/navigation"
+import { get } from "./lib/api/api"
+import { useDispatch } from "react-redux"
+import { setItems } from "./lib/store/features/todo/todoSlice"
 
 export default function Home() {
   const cookies = useCookies()
   const token = cookies.get('token')
   const router = useRouter()
+  const dispatch = useDispatch()
 
   if (!token) {
     router.replace('/login')
   }
 
-  const fetcher = (resource: string) => {
-    const url = process.env.NEXT_PUBLIC_API_URL
-    return fetch(`${url}/${resource}`, {
-      headers: {
-        'Authorization': `Bearer ${token}`
+  get('todo', token)
+    .then((result) => {
+      if (result?.data) {
+        dispatch(setItems(result.data))
       }
     })
-      .then(res => res.json())
-  }
+
 
   return (
-    <SWRConfig
-      value={{
-        fetcher
-      }}
-    >
-      <div>
-        <AppHeader />
-        <div className={style.container}>
-          <div className={style.content}>
-            <TodoSection />
-          </div>
+    <div>
+      <AppHeader />
+      <div className={style.container}>
+        <div className={style.content}>
+          <TodoSection />
         </div>
       </div>
-    </SWRConfig>
+    </div>
   );
 }
