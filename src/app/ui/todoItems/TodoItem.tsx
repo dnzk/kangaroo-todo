@@ -5,11 +5,9 @@ import UtilityButton from "../buttons/UtilityButton"
 import IconButton from "../buttons/IconButton"
 import { useState } from "react"
 import ItemDetail from "./ItemDetail"
+import type { TodoItem } from "@/app/lib/api/types"
 
-interface ITodoItem {
-  done: boolean;
-  name: string;
-  details?: string;
+type ITodoItem = TodoItem & {
   onDone: () => void;
   onUndone: () => void;
   onDelete: () => void;

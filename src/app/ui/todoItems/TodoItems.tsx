@@ -6,28 +6,20 @@ import ItemForm from "./ItemForm"
 import { useState } from "react"
 import { IItemEdit } from "./ItemForm"
 import { post } from "@/app/lib/api/api"
-import { setItems } from "@/app/lib/store/features/todo/todoSlice"
+import { selectItems, setItems } from "@/app/lib/store/features/todo/todoSlice"
 import { useDispatch } from "react-redux"
 import { put, del } from "@/app/lib/api/api"
 import { useCookies } from 'next-client-cookies'
+import { useAppSelector } from "@/app/lib/store/hooks"
+import type { TodoItem as ITodoItem } from "@/app/lib/api/types"
 
-export interface ITodoItem {
-  id: string;
-  done: boolean;
-  name: string;
-  details?: string;
-}
-
-interface ITodoItems {
-  items: ITodoItem[];
-}
-
-export default function TodoItems(props: ITodoItems) {
+export default function TodoItems() {
   const [shouldShowModal, setShouldShowModal] = useState<boolean>(false)
   const [itemTracker, setItemTracker] = useState<ITodoItem | undefined>()
   const dispatch = useDispatch()
   const cookies = useCookies()
   const token = cookies.get('token')
+  const items = useAppSelector(selectItems)
 
   async function saveItem(item: IItemEdit) {
     if (item.id) {
@@ -85,7 +77,7 @@ export default function TodoItems(props: ITodoItems) {
     showModal()
   }
 
-  if (!props.items.length) {
+  if (!items.length) {
     return (
       <div className={style['todo-items']}>
         <p>Hi!<br />You don&apos;t have anything left to do, good job on squashing those tasks! Let&apos;s add some more by pressing the plus button:</p>
@@ -115,14 +107,12 @@ export default function TodoItems(props: ITodoItems) {
         <p className={style['todo-items__header']}>Looks like we&apos;ve got things to do!</p>
         <ol className={style['todo-items-list']}>
           {
-            props.items.map(item => <li
+            items.map(item => <li
               className={style['todo-items-list__item']}
               key={item.id}
             >
               <TodoItem
-                done={item.done}
-                name={item.name}
-                details={item.details}
+                {...item}
                 onDone={() => {
                   markAsDone(item)
                 }}

@@ -1,13 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import type { PayloadAction } from "@reduxjs/toolkit"
 import type { RootState } from "../../store"
-
-type TodoItem = {
-  id: string
-  name: string,
-  detail?: string,
-  done: boolean
-}
+import type { TodoItem } from "@/app/lib/api/types"
 
 interface TodoState {
   items: TodoItem[];

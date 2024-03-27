@@ -2,12 +2,12 @@
 
 import style from "./page.module.scss"
 import AppHeader from "./ui/appHeader/AppHeader"
-import TodoSection from "./ui/todoItems/TodoSection"
 import { useCookies } from "next-client-cookies"
 import { useRouter } from "next/navigation"
 import { get } from "./lib/api/api"
 import { useDispatch } from "react-redux"
 import { setItems } from "./lib/store/features/todo/todoSlice"
+import TodoItems from "./ui/todoItems/TodoItems"
 
 export default function Home() {
   const cookies = useCookies()
@@ -32,7 +32,7 @@ export default function Home() {
       <AppHeader />
       <div className={style.container}>
         <div className={style.content}>
-          <TodoSection />
+          <TodoItems />
         </div>
       </div>
     </div>
