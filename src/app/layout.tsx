@@ -4,6 +4,8 @@ import AppBackground from "./ui/background/AppBackground"
 import "./reset.css"
 import "./global.css"
 import StoreProvider from "./StoreProvider"
+import { CookiesProvider } from "next-client-cookies/server"
+CookiesProvider
 
 export const metadata: Metadata = {
   title: "KangarooTodo",
@@ -18,10 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        <StoreProvider>
-          <AppBackground />
-          {children}
-        </StoreProvider>
+        <CookiesProvider>
+          <StoreProvider>
+            <AppBackground />
+            {children}
+          </StoreProvider>
+        </CookiesProvider>
       </body>
     </html>
   )

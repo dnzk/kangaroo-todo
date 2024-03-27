@@ -29,8 +29,10 @@ export default function LoginPage() {
       }
     })
     const result = await response.json()
-    cookies.set('token', result.data)
-    router.push('/')
+    if (result?.string === "ok" && result?.data) {
+      cookies.set('token', result.data)
+      router.push('/')
+    }
   }
 
   return (

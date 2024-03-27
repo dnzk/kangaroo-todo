@@ -6,26 +6,7 @@ export async function get(resource: string, token?: string) {
     }
   } : {}
   const response = await fetch(`${url}/${resource}`, config)
-  if (response.ok) {
-    return await response.json()
-  }
-  return null
-}
-
-function generateConfig(method: string, token?: string, data?: any) {
-  const config: any = {
-    method,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }
-  if (token) {
-    config.headers['Authorization'] = `Bearer ${token}`
-  }
-  if (data) {
-    config.body = JSON.stringify(data)
-  }
-  return config
+  return response.json()
 }
 
 export async function put(resource: string, data: any, token?: string) {
@@ -45,3 +26,20 @@ export async function post(resource: string, data: any, token?: string) {
   const response = await fetch(`${url}/${resource}`, generateConfig('POST', token, data))
   return response.json()
 }
+
+function generateConfig(method: string, token?: string, data?: any) {
+  const config: any = {
+    method,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }
+  if (token) {
+    config.headers['Authorization'] = `Bearer ${token}`
+  }
+  if (data) {
+    config.body = JSON.stringify(data)
+  }
+  return config
+}
+
